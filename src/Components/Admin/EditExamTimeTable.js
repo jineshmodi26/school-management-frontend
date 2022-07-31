@@ -104,7 +104,7 @@ export default function EditExamTimeTableComponents(props) {
                                     <TableCell>{item.startTime}</TableCell>
                                     <TableCell>{item.endTime}</TableCell>
                                     <TableCell>{item.date.substring(0, 10)}</TableCell>
-                                    <TableCell>{`${item.subject.Subject_Name} - ${item.subject.Class_Id.Std_Name}`}</TableCell>
+                                    <TableCell>{(item.subject===null)?`Deleted`:`${item.subject.Subject_Name} - ${item.subject.Class_Id.Std_Name}`}</TableCell>
                                     <TableCell>
                                         <IconButton onClick={() => { OnEdit(item, index) }}>
                                             <EditIcon style={{ color: green[900] }} />

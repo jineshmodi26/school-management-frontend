@@ -262,8 +262,13 @@ import {
     Select,
     MenuItem,
     FormControl,
-    Chip
-} from "@material-ui/core"
+    Chip,
+    InputAdornment,
+    IconButton
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import axios from 'axios';
 import {pick} from "lodash"
 
@@ -339,7 +344,9 @@ const AddTeacher = () => {
 
     const [subjectName, setSubjectName] = React.useState([]);
     const [subjectsId, setSubjectsId] = useState([]);
-
+const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const addTeacher = async (e) => {
         e.preventDefault();
         let subjectsId = [];
@@ -434,13 +441,26 @@ const AddTeacher = () => {
                                 <TextField
                                     label="Password"
                                     variant='outlined'
-                                    type="password"
+                                   type={showPassword ? "text" : "password"}
                                     required
                                     fullWidth
                                     value={password}
                                     onChange={(e) => { setPassword(e.target.value); setPasswordFlag(true) }}
                                     className={classes.textField}
                                     error={password == "" && passwordFlag == true ? true : false}
+				    InputProps={{ // <-- This is where the toggle button is added.
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                                >
+                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        )
+                                    }}
                                 />
                             </Box>
                             <Box>
@@ -475,6 +495,13 @@ const AddTeacher = () => {
                             </Box>
                             <Box className={classes.buttonDiv}>
                                 <Button
+                                    color='primary'
+                                    variant='outlined'
+                                    className={classes.button}
+                                >
+                                    <Link to="/teachers">cancel</Link>
+                                </Button>
+				<Button
                                     color='primary'
                                     variant='contained'
                                     className={classes.button}

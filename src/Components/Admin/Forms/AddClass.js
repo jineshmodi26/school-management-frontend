@@ -8,7 +8,8 @@ import {
     makeStyles,
     Button,
     Box
-} from "@material-ui/core"
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -90,6 +91,13 @@ const AddClass = () => {
                             />
                         </Box>
                         <Box className={classes.buttonDiv}>
+				<Button
+                                color='primary'
+                                variant='outlined'
+                                className={classes.button}
+                            >
+                                <Link to="/classes">cancel</Link>
+                            </Button>
                             <Button
                             color='primary'
                             variant='contained'

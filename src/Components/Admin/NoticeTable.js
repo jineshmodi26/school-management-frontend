@@ -24,6 +24,7 @@ export default function CustomNoticeTableComponents(props) {
   const [page, setPage] = useState(0);
   const [row, setRow] = useState(10);
   const deleteNotice = async (id) => {
+	if(window.confirm('Do you really want to Delete Notice?') ){
     await axios({
       method : "DELETE",
       url : `${process.env.REACT_APP_API_URL}/notices/admin/${id}`,
@@ -42,6 +43,7 @@ export default function CustomNoticeTableComponents(props) {
     }).catch((error) => {
       toast.error(error.response.data.message);
     });
+}
   }
   useEffect(() => {
     setNotice(props.Notices);

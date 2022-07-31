@@ -276,7 +276,14 @@ export default function AddResult() {
                     <ResultList marksList={marksList} removeSubject={removeSubject}/>
                     {
                         (!ExamTime) ? <>
-                            <div style={{ margin: "20px auto 20px auto", width: "50%" }}>
+                            <div style={{ margin: "20px auto 20px auto", width: "50%",display: 'flex', justifyContent: 'space-between' }}>
+                            <Button
+                                color='primary'
+                                variant='outlined'
+                                style={{ width: "300px", margin: '0px 30px 0px 0px' }}
+                            >
+                                <Link to="/results">cancel</Link>
+                            </Button>
                                 <Button
                                     variant="contained"
                                     color="primary"

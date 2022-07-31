@@ -143,6 +143,7 @@ export default function CustomClassTableComponents(props) {
     // setClasses(classes.filter((cls) => {
     //   return cls._id !== id;
     // }))
+	if(window.confirm('Do you really want to Delete Class?') ){
     await axios({
       method : "DELETE",
       url : `${process.env.REACT_APP_API_URL}/classes/${id}`,
@@ -161,7 +162,7 @@ export default function CustomClassTableComponents(props) {
     }).catch((error) => {
       toast.error(error.response.data.message);
     });
-
+}
   }
 
   return (

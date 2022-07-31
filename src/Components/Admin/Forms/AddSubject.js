@@ -15,7 +15,7 @@ import {
     Chip
 } from "@material-ui/core"
 import axios from 'axios';
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     textField: {
         margin: "20px"
@@ -141,6 +141,13 @@ const AddSubject = () => {
                                 </FormControl>
                             </Box>
                             <Box className={classes.buttonDiv}>
+				<Button
+                                    color='primary'
+                                    variant='outlined'
+                                    className={classes.button}
+                                >
+                                    <Link to="/subjects">cancel</Link>
+                                </Button>
                                 <Button
                                     color='primary'
                                     variant='contained'

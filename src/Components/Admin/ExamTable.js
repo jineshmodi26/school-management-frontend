@@ -24,7 +24,8 @@ import VisibilityIcon from "@material-ui/icons/Visibility";
 export default function CustomExamTableComponents(props) {
   const [Exams, setExams] = useState([]);
   const deleteExam = async (id) => {
-    await axios({
+if(window.confirm('Do you really want to Delete Exam?') ){ 
+   await axios({
       method : "DELETE",
       url : `${process.env.REACT_APP_API_URL}/exams/admin/${id}`,
       headers : {
@@ -43,6 +44,7 @@ export default function CustomExamTableComponents(props) {
       toast.error(error.response.data.message);
     });
   }
+}
   const [page, setPage] = useState(0);
   const [row, setRow] = useState(10);
   useEffect(() => {
@@ -69,7 +71,7 @@ export default function CustomExamTableComponents(props) {
                 <TableCell>{index+1}</TableCell>
                 <TableCell>{new Date(item.startDate).toLocaleDateString()}</TableCell>
                 <TableCell>{new Date(item.endDate).toLocaleDateString()}</TableCell>
-                <TableCell>{item.class.Std_Name}</TableCell>
+                <TableCell>{(item.class ===null)?"deleted":item.class.Std_Name}</TableCell>
                 <TableCell>{(item.teacher === null)?"Admin":item.teacher.Teacher_Name}</TableCell>
                 <TableCell>
                 <Link to={`/Exams/edit/${item._id}`}>

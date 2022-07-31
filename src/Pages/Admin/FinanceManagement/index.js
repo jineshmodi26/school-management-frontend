@@ -59,6 +59,7 @@ export default function FinanceManagementPage(props) {
     }
   })
   const deleteFinance = async (id) => {
+if(window.confirm('Do you really want to Delete This Expence?') ){
     await axios({
       method : "DELETE",
       url : `${process.env.REACT_APP_API_URL}/finances/${id}`,
@@ -78,6 +79,7 @@ export default function FinanceManagementPage(props) {
       toast.error(error.response.data.message);
     });
   }
+}
   // const startDate= "2022-05-13T00:00:00.000Z"
   // const endDate= "2022-05-22T00:00:00.000Z"
   useEffect(() => {

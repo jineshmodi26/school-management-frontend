@@ -143,7 +143,7 @@ import {
 } from "@material-ui/core"
 import { useParams } from "react-router-dom";
 import axios from 'axios';
-
+import { Link } from "react-router-dom";
 const useStyles = makeStyles((theme) => ({
     textField: {
         margin: "20px"
@@ -222,7 +222,7 @@ const EditSubject = () => {
             } else {
                 if (res.data.data.Class_Id == null) {
                     toast.error("Class doesn't exist");
-                } else {
+                } 
                     setSubject(res.data.data);
                     if (res.data.data.Class_Id !== null) {
                         setSelectClass(res.data.data.Class_Id._id);
@@ -244,7 +244,7 @@ const EditSubject = () => {
                     }).catch((error) => {
                       toast.error(error.response.data.error);
                     });
-                }
+                
             }
         }).catch((error) => {
             toast.error(error.response.data.message);
@@ -292,6 +292,13 @@ const EditSubject = () => {
                                     </FormControl>
                                 </Box>
                                 <Box className={classes.buttonDiv}>
+					<Button
+                                    color='primary'
+                                    variant='outlined'
+                                    className={classes.button}
+                                >
+                                    <Link to="/subjects">cancel</Link>
+                                </Button>
                                     <Button
                                         color='primary'
                                         variant='contained'

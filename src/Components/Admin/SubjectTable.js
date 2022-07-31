@@ -102,6 +102,7 @@ export default function CustomSubjectTableComponents(props) {
   const [row, setRow] = useState(10);
 
   const deleteSubject = async (id) => {
+if(window.confirm('Do you really want to Delete Subject?') ){
     await axios({
       method: "DELETE",
       url: `${process.env.REACT_APP_API_URL}/subjects/${id}`,
@@ -121,6 +122,7 @@ export default function CustomSubjectTableComponents(props) {
       toast.error(error.response.data.message)
     });
   }
+}
 
   useEffect(() => {
     setSubjects(props.subjects);
@@ -142,7 +144,13 @@ export default function CustomSubjectTableComponents(props) {
               return <TableRow>
                 <TableCell>{item.Subject_Name}</TableCell>
                 <TableCell>
-                  {item.Class_Id.Std_Name}
+                {
+                  (item.Class_Id===null)?<>
+                    Deleted
+                  </>:<>
+                    {item.Class_Id.Std_Name}
+                  </>
+                }
                 </TableCell>
                 <TableCell>
                   <Link to={`/subjects/edit/${item._id}`}>

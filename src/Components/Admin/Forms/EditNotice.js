@@ -19,7 +19,8 @@ import {
     ListItemIcon,
     Checkbox,
     ListItemText
-} from "@material-ui/core"
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 import axios from 'axios';
 const useStyles = makeStyles((theme) => ({
     root: {
@@ -279,6 +280,13 @@ const EditNotice = () => {
                             </FormControl>
                         </Box> */}
                         <Box className={classes.buttonDiv}>
+				<Button
+                                    color='primary'
+                                    variant='outlined'
+                                    className={classes.button}
+                                >
+                                    <Link to="/Notices">cancel</Link>
+                                </Button>
                             <Button
                                 color='primary'
                                 variant='contained'

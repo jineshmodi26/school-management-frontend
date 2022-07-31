@@ -8,9 +8,14 @@ import {
     makeStyles,
     Button,
     Box,
-    LinearProgress
-} from "@material-ui/core"
+    LinearProgress,
+InputAdornment,
+    IconButton,
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
 import { useParams } from "react-router-dom";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import axios from 'axios';
 
 const useStyles = makeStyles((theme) => ({
@@ -50,6 +55,9 @@ const EditStudent = () => {
     const [password, setPassword] = useState("");
     const [passwordFlag, setPasswordFlag] = useState(false);
     const [disabled, setDisabled] = useState(true);
+	const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
 
     const editStudent = async (e) => {
         e.preventDefault();
@@ -205,15 +213,35 @@ const EditStudent = () => {
                                         disabled={disabled}
                                         onDoubleClick={() => { setDisabled(!disabled) }}
                                         fullWidth
-                                        type="password"
+                                        type={showPassword ? "text" : "password"}
                                         value={password}
                                         onChange={(e) => { setPassword(e.target.value); setPasswordFlag(true) }}
                                         className={classes.textField}
                                         error={password == "" && passwordFlag == true ? true : false}
+					InputProps={{ // <-- This is where the toggle button is added.
+                                            endAdornment: (
+                                                <InputAdornment position="end">
+                                                    <IconButton
+                                                        aria-label="toggle password visibility"
+                                                        onClick={handleClickShowPassword}
+                                                        onMouseDown={handleMouseDownPassword}
+                                                    >
+                                                        {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                    </IconButton>
+                                                </InputAdornment>
+                                            )
+                                        }}
                                     />
                                 </Box>
                                 <Box className={classes.buttonDiv}>
-                                    <Button
+                                   <Button
+                                        color='primary'
+                                        variant='outlined'
+                                        className={classes.button}
+                                    >
+                                        <Link to="/students">cancel</Link>
+                                    </Button>
+				    <Button
                                         color='primary'
                                         variant='contained'
                                         className={classes.button}

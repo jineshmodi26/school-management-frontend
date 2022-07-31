@@ -5,6 +5,7 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import CustomDrawerComponents from '../Drawer'
 import axios from 'axios';
+import { Link } from "react-router-dom";
 // import {
 //   KeyboardDatePicker,
 // } from '@material-ui/pickers';
@@ -113,7 +114,6 @@ export default function AddFinance() {
                 label="Description"
                 multiline
                 rows={4}
-                defaultValue="Default Value"
                 variant="outlined"
                 value={Description}
                   onChange={(e) => { setDescription(e.target.value); setDescriptionFlag(true) }}
@@ -147,6 +147,14 @@ export default function AddFinance() {
               </div>
             </Box>
             <Box className={classes.buttonDiv} style={{display:'flex',justifyContent:'center'}}>
+		<Button
+                color='primary'
+                variant='outlined'
+                className={classes.button}
+                style={{ width: "300px", margin: '10px' }}
+              >
+                <Link to="/finance">cancel</Link>
+              </Button>
               <Button
               style={{width: "300px",margin:'10px'}}
                 color='primary'

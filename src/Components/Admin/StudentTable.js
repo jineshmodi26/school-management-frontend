@@ -28,6 +28,7 @@ export default function CustomStudentTableComponents(props) {
   const [row, setRow] = useState(10);
 
   const deleteStudent = async (id) => {
+	if(window.confirm('Do you really want to Delete Student?') ){
     await axios({
       method : "DELETE",
       url : `${process.env.REACT_APP_API_URL}/students/${id}`,
@@ -46,6 +47,7 @@ export default function CustomStudentTableComponents(props) {
     }).catch((error) => {
       toast.error(error.response.data.message);
     });
+}
   }
 
   useEffect(() => {

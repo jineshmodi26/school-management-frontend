@@ -65,7 +65,7 @@ export default function CustomDrawerComponents(props) {
     { name: "Fees Payment", path: "/fees" },
     { name: "Student Management", path: "/students" },
     { name: "Subject Management", path: "/subjects" },
-    { name: "Manage Expences", path: "/finance" },
+    { name: "Manage Finance", path: "/finance" },
     { name: "Exam Management", path: "/Exams" },
     { name: "Result Management", path: "/results" },
   ];

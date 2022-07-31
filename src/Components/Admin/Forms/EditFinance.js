@@ -6,6 +6,7 @@ import "react-toastify/dist/ReactToastify.css";
 import CustomDrawerComponents from '../Drawer'
 import axios from 'axios';
 import {useParams} from "react-router-dom";
+import { Link } from "react-router-dom";
 // import {
 //   KeyboardDatePicker,
 // } from '@material-ui/pickers';
@@ -138,7 +139,6 @@ export default function EditFinance() {
                                         label="Description"
                                         multiline
                                         rows={4}
-                                        defaultValue="Default Value"
                                         variant="outlined"
                                         value={Finances.description}
                                         onChange={(e) => { setFinances({...Finances,description:e.target.value}); setDescriptionFlag(true) }}
@@ -186,7 +186,15 @@ export default function EditFinance() {
                                     </div>
                                 </Box>
                                 <Box className={classes.buttonDiv} style={{ display: 'flex', justifyContent: 'center' }}>
-                                    <Button
+ 				<Button
+                color='primary'
+                variant='outlined'
+                className={classes.button}
+                style={{ width: "300px", margin: '10px' }}
+              >
+                <Link to="/finance">cancel</Link>
+              </Button>
+				 <Button
                                         style={{ width: "300px", margin: '10px' }}
                                         color='primary'
                                         variant='contained'

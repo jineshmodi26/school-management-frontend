@@ -103,10 +103,15 @@ export default function EditExam() {
             } else {
                 setWholeExam(res.data.data);
                 setExamsTimeList(res.data.data.exams);
-                setSelectClass(res.data.data.class._id);
-                setStartDate(new Date(res.data.data.startDate.substring(0, 10)))
-                setEndDate(new Date(res.data.data.endDate.substring(0, 10)))
-                setLoading(true);
+                if(res.data.data.class===null){
+                    toast.error("class is deleted!")
+                }
+                else{
+                    setSelectClass(res.data.data.class._id);
+                    setStartDate(new Date(res.data.data.startDate.substring(0, 10)))
+                    setEndDate(new Date(res.data.data.endDate.substring(0, 10)))
+                    setLoading(true);
+                }
             }
         }).catch((error) => {
             toast.error(error.response.data.message);
@@ -253,7 +258,14 @@ export default function EditExam() {
                     <EditExamTimeTableComponents ExamsTimeList={WholeExam.exams} selectClass={selectClass}  HandleupdateExamTimeList={HandleupdateExamTimeList} starDate={starDate} endDate={endDate}/>
                 {
                     (!ExamTime)?<>
-                    <div style={{ margin: "20px auto 20px auto", width: "50%" }}>
+                    <div style={{ margin: "20px auto 20px auto", width: "50%",display: 'flex', justifyContent: 'space-between'  }}>
+                    <Button
+                                color='primary'
+                                variant='outlined'
+                                style={{ width: "300px", margin: '0px 30px 0px 0px' }}
+                            >
+                                <Link to="/Exams">cancel</Link>
+                            </Button>
                         <Button
                             variant="contained"
                             color="primary"

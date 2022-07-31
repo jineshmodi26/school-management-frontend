@@ -10,6 +10,7 @@ import {
     Box,
     LinearProgress
 } from "@material-ui/core"
+import { Link } from "react-router-dom";
 import {useParams} from "react-router-dom";
 import axios from 'axios';
 
@@ -110,7 +111,14 @@ const EditClass = () => {
                             />
                         </Box>
                         <Box className={classes.buttonDiv}>
-                            <Button
+                           <Button
+                                    color='primary'
+                                    variant='outlined'
+                                    className={classes.button}
+                                >
+                                    <Link to="/classes">cancel</Link>
+                                </Button>
+				 <Button
                             color='primary'
                             variant='contained'
                             className={classes.button}

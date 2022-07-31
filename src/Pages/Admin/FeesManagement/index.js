@@ -33,12 +33,14 @@ export default function FeesManagementPage(props) {
         toast.success(res.data.message);
         setStudent(res.data.data);
         setLoading(true);
+	setAmount(0);
       }
     }).catch((error) => {
       toast.error(error.response.data.error);
     });
   }
   const OnFeesPayment = (id)=>{
+if(window.confirm(`The amount is ${Amount} , this is not reversable`) ){
     axios({
       method : "POST",
       url : `${process.env.REACT_APP_API_URL}/students/fees`,
@@ -55,11 +57,12 @@ export default function FeesManagementPage(props) {
       } else {
         toast.success(res.data.message);
         setStudent(res.data.data);
-        setLoading(true);
+        setAmount(0);
       }
     }).catch((error) => {
       toast.error(error.response.data.error);
     });
+}
   }
   const [Student, setStudent] = React.useState({
     "studentID": "----",
@@ -71,7 +74,7 @@ export default function FeesManagementPage(props) {
     "pendingFees": "----",
 });
   const [studentid,setStudentid] = React.useState(`${window.sessionStorage.getItem('SchoolName')}__`);
-  const [Amount,setAmount] = React.useState(0);
+  const [Amount,setAmount] = React.useState();
   const [loading, setLoading] = useState(false);
   // const [Student, setStudent] = React.useState({
   //   studentID: "19ce077",
@@ -151,6 +154,8 @@ export default function FeesManagementPage(props) {
                 </List>
               </Paper>
             </Grid>
+		{
+              loading?
             <Grid item sm={12} md={12} lg={12} xl={12}>
               <Paper>
                 <List>
@@ -185,28 +190,11 @@ export default function FeesManagementPage(props) {
                       </Grid>
                     </Grid>
                   </ListItem>
-                  {/* <ListItem>
-                    <FormControl>
-                      <FormControlLabel
-                        control={
-                          <Switch
-                            checked={Student.isActive}
-                            color="primary"
-                            onChange={(_) =>
-                              setStudent({
-                                ...Student,
-                                isActive: !Student.isActive,
-                              })
-                            }
-                          />
-                        }
-                        label="Active Student to login"
-                      />
-                    </FormControl>
-                  </ListItem> */}
                 </List>
               </Paper>
             </Grid>
+	:<></>
+            }
           </Grid>
         </Box>
       </CustomDrawerComponents>

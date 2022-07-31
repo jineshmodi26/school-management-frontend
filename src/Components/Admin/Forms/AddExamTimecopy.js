@@ -66,7 +66,7 @@ export default function AddExamTime(props) {
     const [startimeFlag,setStartTimeFlag] = React.useState(false);
     const [endtime,setEndTime] = React.useState('');
     const [endtimeFlag,setEndTimeFlag] = React.useState(false);
-    const [examDate,setExamDate] = React.useState();
+    const [examDate,setExamDate] = React.useState(props.starDate);
     const [examDateFlag,setExamDateFlag] = React.useState(false);
     const [subjectList, setSubjectList] = useState([]);
     const [subject, setSubject] = React.useState(1);

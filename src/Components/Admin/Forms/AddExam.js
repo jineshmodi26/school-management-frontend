@@ -230,7 +230,14 @@ export default function AddExam() {
                     }
                     <EditExamTimeTableComponents ExamsTimeList={ExamsTimeList} selectClass={selectClass} HandleupdateExamTimeList={HandleAddExamTimeList} starDate={starDate} endDate={endDate}/>
                     {
-                        <div style={{ margin: "20px auto 20px auto", width: "50%" }}>
+                        <div style={{ margin: "20px auto 20px auto", width: "50%", display: 'flex', justifyContent: 'space-between' }}>
+                            <Button
+                                color='primary'
+                                variant='outlined'
+                                style={{ width: "300px", margin: '0px 30px 0px 0px' }}
+                            >
+                                <Link to="/Exams">cancel</Link>
+                            </Button>
                             <Button
                                 variant="contained"
                                 color="primary"

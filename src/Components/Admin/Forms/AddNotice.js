@@ -9,6 +9,7 @@ import { makeStyles, useTheme } from '@material-ui/core/styles';
 import Chip from '@material-ui/core/Chip';
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
+import { Link } from "react-router-dom";
 import CustomDrawerComponents from '../Drawer'
 import {
     Container,
@@ -229,6 +230,13 @@ const AddNotice = () => {
                             </FormControl>
                         </Box>
                         <Box className={classes.buttonDiv}>
+			<Button
+                                color='primary'
+                                variant='outlined'
+                                className={classes.button}
+                            >
+                                <Link to="/Notices">cancel</Link>
+                            </Button>
                             <Button
                                 color='primary'
                                 variant='contained'

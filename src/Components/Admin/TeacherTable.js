@@ -140,7 +140,8 @@ export default function CustomTeacherTableComponents(props) {
   const [row, setRow] = useState(10);
 
   const deleteTeacher = async (id) => {
-    await axios({
+	if(window.confirm('Do you really want to Teacher?') ){   
+ await axios({
       method : "DELETE",
       url : `${process.env.REACT_APP_API_URL}/teachers/${id}`,
       headers : {
@@ -159,7 +160,7 @@ export default function CustomTeacherTableComponents(props) {
       toast.error(error.response.data.message);
     });
   }
-
+}
   useEffect(() => {
     setTeachers(props.teachers);
   },[])
@@ -189,15 +190,18 @@ export default function CustomTeacherTableComponents(props) {
                   {
                     item.Subjects_Id.map((subject) => {
                       if (subject.Subject_Id !== null) return <p>{subject.Subject_Id.Subject_Name}</p>
-                      else return <p>NA</p>
+                      else return <p>Deleted</p>
                     })
                   }
                 </TableCell>
                 <TableCell>
                   {
                     item.Subjects_Id.map((subject) => {
-                      if (subject.Subject_Id !== null) return <p>{subject.Subject_Id.Class_Id.Std_Name}</p>
-                      else return <p>NA</p>
+                      if (subject.Subject_Id !== null)
+                        if(subject.Subject_Id.Class_Id !== null)
+                          return <p>{subject.Subject_Id.Class_Id.Std_Name}</p>
+                        else return <p>Deleted</p>
+                      else return <p>Deleted</p>
                     })
                   }
                 </TableCell>

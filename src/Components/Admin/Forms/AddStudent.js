@@ -12,8 +12,13 @@ import {
     Select,
     MenuItem,
     FormControl,
-    Chip
-} from "@material-ui/core"
+    Chip,
+	InputAdornment,
+    IconButton
+} from "@material-ui/core";
+import { Link } from "react-router-dom";
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import CircularProgress from '@material-ui/core/CircularProgress';
 import axios from 'axios'
 
@@ -54,7 +59,9 @@ const AddStudent = () => {
     const [addressFlag, setAddressFlag] = useState(false);
     const [phoneFlag, setPhoneFlag] = useState(false);
     const [passwordFlag, setPasswordFlag] = useState(false);
-
+const [showPassword, setShowPassword] = useState(false);
+    const handleClickShowPassword = () => setShowPassword(!showPassword);
+    const handleMouseDownPassword = () => setShowPassword(!showPassword);
     const [selectClass, setSelectClass] = React.useState(1);
     const [classList, setClassList] = useState([]);
     const [isClassLoading, setIsClassLoading] = useState(false);
@@ -137,7 +144,6 @@ const AddStudent = () => {
                                 value={selectClass}
                                 onChange={(e) => {setSelectClass(e.target.value);setClasssFlag(true)}}
                                 required
-                                error={classs == "" && classsFlag == true ? true : false}
                                 label="Class"
                                 >
                                 {
@@ -189,17 +195,37 @@ const AddStudent = () => {
                                 <TextField
                                     label="Password"
                                     variant='outlined'
-                                    type="password"
+                                    type={showPassword ? "text" : "password"}
                                     required
                                     fullWidth
                                     value={password}
                                     onChange={(e) => { setPassword(e.target.value); setPasswordFlag(true) }}
                                     className={classes.textField}
                                     error={password == "" && passwordFlag == true ? true : false}
+					InputProps={{ // <-- This is where the toggle button is added.
+                                        endAdornment: (
+                                            <InputAdornment position="end">
+                                                <IconButton
+                                                    aria-label="toggle password visibility"
+                                                    onClick={handleClickShowPassword}
+                                                    onMouseDown={handleMouseDownPassword}
+                                                >
+                                                    {showPassword ? <Visibility /> : <VisibilityOff />}
+                                                </IconButton>
+                                            </InputAdornment>
+                                        )
+                                    }}
                                 />
                             </Box>
                             <Box className={classes.buttonDiv}>
-                                <Button
+                               <Button
+                                    color='primary'
+                                    variant='outlined'
+                                    className={classes.button}
+                                >
+                                    <Link to="/students">cancel</Link>
+                                </Button>
+				 <Button
                                     color='primary'
                                     variant='contained'
                                     className={classes.button}
